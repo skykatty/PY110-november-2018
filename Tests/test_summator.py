@@ -27,7 +27,7 @@ class MyTestCase(unittest.TestCase):
 	def test_avg_empty(self):
 		a = []
 		with self.assertRaises(SummatorError, msg="На вход был подан пустой массив"):
-			sum_(a)
+			avg_(a)
 
 	def test_sum_valid(self):
 		a = [i for i in range(10)]
