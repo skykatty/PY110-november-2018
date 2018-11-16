@@ -10,11 +10,28 @@ class EmptyListError(SummatorError):
     pass
 
 
+class NotListError(SummatorError):
+    pass
+
+
+def checkNotList(data):
+    return type(data) != list
+
+def checkIsEmptyList(arr):
+    return len(arr) == 0
+
+def checkDataTypes(elm):
+    return type(elm) == int or type(elm) == float
+
+
+
 def sum(arr: list):
     sum_ = 0
-    if len(arr) == 0: raise EmptyListError
+    if checkNotList(arr): raise NotListError
+    if checkIsEmptyList(arr): raise EmptyListError
+
     for x in arr:
-        if type(x) == int or type(x) == float :
+        if checkDataTypes(x):
             sum_ += x
         else:
             raise InputDataTypeError
@@ -23,16 +40,7 @@ def sum(arr: list):
 
 
 def avg(arr: list):
-        sum_ = 0
-        if len(arr) ==0: raise EmptyListError
-
-        for x in arr:
-            if type(x) == int or type(x) == float:
-                sum_ += x
-            else:
-                raise InputDataTypeError
-
-        return sum_ / len(arr)
+        return sum(arr) / len(arr)
 
 # print(sum([1, 2, 3]))
 # print(avg([1, 2, 3]))
