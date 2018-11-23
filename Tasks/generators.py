@@ -44,3 +44,18 @@ for i in b:
     print(i)
 
 
+
+def my_corout():
+    print("Запускаем прогрессию")
+    dig = yield
+    print("Вы дали: ", dig)
+    while True:
+        print(dig)
+        dig *= 5
+
+
+
+a = my_corout()
+next(a)
+#a.send(5)
+a.send(10)
