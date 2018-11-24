@@ -21,6 +21,17 @@ def counter(fn):
     wrapper.count = 0
     return wrapper
 
+@counter
+def fibonachi_without_cache(n):
+    if n <= 1:
+        return 1
+    else:
+        return fibonachi_without_cache(n - 1) + fibonachi_without_cache(n - 2)
+
+N = 30 #константа по какому числу счтать ф-цию Фибоначи
+
+print(f"Функция Фибоначи без кэша от {N}: ", fibonachi_without_cache(N))
+
 @cache
 @counter
 def fibonachi(n, n1, first, second=2):
@@ -28,6 +39,6 @@ def fibonachi(n, n1, first, second=2):
         return first
     else:
         return fibonachi(n - 1, n1, first) + fibonachi(n - 2, n1, first)
-N = 10
-print(f"Функция Фибоначи от {N}: ", fibonachi(N, 5, first=1, second=2))
+print("-----------------------------------------------------------------------------------------------------------")
+print(f"Функция Фибоначи с кэшем от {N}: ", fibonachi(N, 5, first=1, second=2))
 
