@@ -1,8 +1,7 @@
-import random as rnd
-number = 1
 def gpsn():
-    number = (rnd.randint(10,50)/2 + 7653) % 76
+    seed = int(input())
+    number = (seed/2 + 7653) / 18652
     yield number
 
-for i in gpsn():
-    print(i)
+a = gpsn()
+print(next(a))

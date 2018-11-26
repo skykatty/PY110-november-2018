@@ -1,4 +1,5 @@
-# arr = [2,12,1,10,5,7]
+# arr = []
+arr = [2,12,1,10,5,7]
 # arr = [2,12,1,10,5,7,'cat']
 class SummatorError(Exception):
 	pass
@@ -24,7 +25,7 @@ def error(input):
 		if type(i) != int:
 			raise WrongType("This is not int!")
 	if length == 0:
-		raise EmptyInput
+		raise EmptyInput("U give an empty list!")
 	if type(input) != list:
 		raise NotList("U give me not list!")
 	for i in input:
@@ -36,23 +37,19 @@ def sum(input):
 	s = 0
 
 	try:
-		for i in input:
-			s += i
+		if len(input) != 0:
+			for i in input:
+				s += i
+		else:
+			raise error
 	except:
 		error(input)
 
 	return s
 
-
 def avg(input):
 	s = 0
 	length = len(input)
-
-	try:
-		for i in input:
-			s += i
-		sr = s / length
-	except:
-		error(input)
+	sr = sum(input) / length
 
 	return sr

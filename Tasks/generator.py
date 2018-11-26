@@ -1,17 +1,17 @@
-string = "cow,cat dog kitty!"
+string = "cow cat dog kitty"
 
 
-sep = ",.?! "
-string_new = ""
-def gena():
-    string_new = ""
-    for i in string:
-        if i not in sep:
-            string_new+=i
-        else:
-            yield string_new
-            string_new = ""
-    yield string_new
+def gena(string):
+    start = 0
+    while True:
+        try:
+            ind = string.index(" ", start, len(string))
+            yield string[start:ind]
+            start = ind + 1
+        except ValueError:
+            yield string[start:]
+            break
 
-for i in gena():
+
+for i in gena(string):
     print(i)
